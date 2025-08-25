@@ -6,6 +6,7 @@ public class Estudiante {
     private int cedula;
     private String nombre;
     private String facultad;
+    private String[] cursos; // Nuevo atributo
 
     // Constructor
     public Estudiante(int id, int cedula, String nombre, String facultad) {
@@ -13,16 +14,21 @@ public class Estudiante {
         this.cedula = cedula;
         this.nombre = nombre;
         this.facultad = facultad;
+        this.cursos = new String[0]; // Inicialmente sin cursos
     }
 
     // Método Matricular Cursos
     public void matricularCursos(String[] cursos) {
-        System.out.println(Arrays.toString(cursos));
+        this.cursos = cursos; // Guardamos los cursos en el objeto
+        System.out.println("Cursos matriculados por " + nombre + ": " + Arrays.toString(cursos));
     }
 
     // Método toString
     public String toString() {
-        return "Estudiante: [ id: " + id + " Cédula: " + cedula + " Nombre: " + nombre + " Facultad: " + facultad + " ]";
+        return "Estudiante id: " + id 
+            + " | Cédula: " + cedula 
+            + " | Nombre: " + nombre 
+            + " | Facultad: " + facultad 
+            + " | Cursos: " + Arrays.toString(cursos) + " ]";
     }
-
 }
