@@ -21,5 +21,29 @@ public class EjecutarLibro {
         }
         //Muestra el precio total de los libros
         System.out.println("Precio total: $" + precioTotal);
+
+        System.out.println("\nLibros con precio mayor a $20,000:");
+        for (Libro libro : libros) {
+            if (libro.getPrecio() > 20000) {
+                System.out.println(libro.getTitulo() + " - " + libro.getAutor() + " - $" + libro.getPrecio());
+            }
+        }
+
+    // Ordenar los libros por precio de menor a mayor usando burbuja
+    for (int i = 0; i < libros.length - 1; i++) {
+        for (int j = 0; j < libros.length - i - 1; j++) {
+        if (libros[j].getPrecio() > libros[j + 1].getPrecio()) {
+            Libro temp = libros[j];
+            libros[j] = libros[j + 1];
+            libros[j + 1] = temp;
+        }
+        }
+    }
+
+    System.out.println("\nLibros ordenados por precio (menor a mayor):");
+    for (Libro libro : libros) {
+        System.out.println(libro.getTitulo() + " - " + libro.getAutor() + " - $" + libro.getPrecio());
+    }
+        
     }
 }
