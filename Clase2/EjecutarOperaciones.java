@@ -1,4 +1,4 @@
-public class EjecutarOperacionesA {
+public class EjecutarOperaciones {
     public static void main(String[] args){
 
         OperacionesArreglos objOp = new OperacionesArreglos();
