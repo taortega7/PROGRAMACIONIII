@@ -23,6 +23,7 @@ public class OperacionesPila {
          } else {
             cont2 += 1;
          }
+         pilaSignos.pop();
        }
 
        flag = (cont1 == cont2 ? true : false);

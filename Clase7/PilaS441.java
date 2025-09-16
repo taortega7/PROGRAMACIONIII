@@ -38,5 +38,11 @@ public class PilaS441 {
 
         // VERIFICAR SI LA PILA ESTA VACIA
         System.out.println(pila.empty()); // false
+
+        // LLAMAR EL METODO PARA VALIDAR PARENTESIS
+        OperacionesPila op = new OperacionesPila();
+        String[] signos = { "(", "(", ")", "(", ")", ")" };
+
+        System.out.println(objOp.validarParentesis(signos));
     }
 }
