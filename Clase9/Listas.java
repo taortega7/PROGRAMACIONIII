@@ -3,6 +3,7 @@ import java.io.*;
 public class  Listas{
 public static void main(String args[]) throws IOException {
 ArrayList<String> obj = new ArrayList<String>();
+int tamanoLista;
 Scanner in = new Scanner(System.in);
 int c, ch;
 int i, j;
@@ -30,9 +31,10 @@ break;
 case 2: {
 System.out.println("Digite la cadena a insertar: ");
 str = in.next();
-System.out.println("Digite el índice (0 a " + obj.size() + "): ");
+tamanoLista = obj.size();
+System.out.println("Digite el índice (0 a " + tamanoLista + "): ");
 int idx = Integer.parseInt(in.next());
-if (idx >= 0 && idx <= obj.size()) {
+if (idx >= 0 && idx <= tamanoLista) {
 	obj.add(idx, str);
 	System.out.println("Cadena insertada correctamente.");
 } else {
@@ -56,14 +58,15 @@ str = in.next();
 char letra = str.charAt(0);
 System.out.println("Cadenas que comienzan con '" + letra + "':");
 for (String s : obj) {
-	if (!s.isEmpty() && s.charAt(0) == letra) {
+	if (s.length() > 0 && s.startsWith(String.valueOf(letra))) {
 		System.out.println(s);
 	}
 }
 break;
 }
 case 5: {
-System.out.println("Tama~no de la lista " + obj.size());
+tamanoLista = obj.size();
+System.out.println("Tamaño de la lista " + tamanoLista);
 break;
 }
 case 6: {
