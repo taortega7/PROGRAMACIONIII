@@ -36,7 +36,7 @@ public class ExamenPilasMap {
         }
     }
 
-    // (50 pt) Verifica si el par está balanceado.
+    // (50 pt) Verifica si los parentesis están balanceado.
     public static boolean estaBalanceado(String x) { //Uso x como en tus comentarios
 
         PilaEnteros pila = new PilaEnteros(x.length()); //Creo la pila con capacidad igual al tamaño de la cadena
