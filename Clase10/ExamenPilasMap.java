@@ -13,30 +13,31 @@ public class ExamenPilasMap {
             tope = -1;
         }
 
+        public boolean estaVacia() {
+            return tope == -1;
+        }
+
         public boolean estaLlena() {
             return tope + 1 == datos.length;
         }
 
-        public boolean estaVacia() {
-            return toep == -1;
-        }
-
         public void apilar(int x) {
-            if (estaLlena())
-                throw new IllegalStateException("Pila llena");
+            if (estaLlena())throw new IllegalStateException("Pila llena");
+            // (tope++) Esto estaba mal, ya se hace en la línea de abajo
             datos[++tope] = x;
         }
 
         public int desapilar() {
             if (estaVacia())
                 throw new IllegalStateException("Pila vacía");
-            int x = datos[tope--];
-            return x;
+            int v = datos[tope];
+            tope--;
+            return v;
         }
     }
 
     // (50 pt) Verifica si el par está balanceado.
-    public static boolean estaBalanceado(String x) {
+    public static boolean estaBalanceado(String x) { //Uso x como en tus comentarios
 
         PilaEnteros pila = new PilaEnteros(x.length()); //Creo la pila con capacidad igual al tamaño de la cadena
 
@@ -59,12 +60,12 @@ public class ExamenPilasMap {
                 }
             }
         }
-      
-        return pila.estaVacia();  //Si la pila queda vacía, está balanceado
+
+        return pila.estaVacia(); //Si la pila queda vacía está balanceado
     }
 
     // (50 pt) Actualiza la calificación si x existe en el id y está en el rango 0..100.
-    public static String actualizarCalificaciones(Map<Integer, Integer> califPorId, int id, int nuevo) { //Reviso si el id existe en el mapa
+    public static boolean actualizarCalificaciones(Map<Integer, Integer> califPorId, int id, int nuevo) { //Reviso si el id existe en el mapa
 
         if (califPorId.containsKey(id)) { //Uso containsKey para ver si existe el id
 
@@ -72,28 +73,28 @@ public class ExamenPilasMap {
 
             if (nuevo >= 0 && nuevo <= 100) { //Valido el rango correcto
                 califPorId.put(id, nuevo); //Actualizo la calificación usando put
-                return "true"; //Si todo está bien retorna true
+                return true; //Si todo está bien retorna true
             }
         }
-        return "false"; //Si no existe el id o el rango es incorrecto, retorno false
+        return false; //Si no existe el id o el rango es incorrecto retorno false
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingresa la cadena a verificar: ");
-        String cadena = sc.nextLine(); //Cambié next() por nextLine() para leer toda la línea y me compile 
-        //Con el next() no me leia 
+        String cadena = sc.nextLine(); //Cambié next() por nextLine() para leer toda la línea y me compile
+        //Con el next() no me leia
         System.out.println("Balanceado: " + estaBalanceado(cadena));
 
         Map<Integer, Integer> mapa = new HashMap<>();
         mapa.put(101, 10);
 
-        System.out.print("Ingresa el id a actualizar: "); //Lo agregue para que el usuario pueda ingresar el id 
+        System.out.print("Ingresa el id a actualizar: "); //Lo agregue para que el usuario pueda ingresar el id
         int id = sc.nextInt();
         System.out.print("Ingresa la nueva calificación: "); //Agregado para que el usuario pueda ingresar la nueva calificación
         int nuevo = sc.nextInt();
 
-        System.out.println("Actualizado: " + actualizarCalificaciones(mapa, id, nuevo)); // Me imprime si se actualizó o no 
+        System.out.println("Actualizado: " + actualizarCalificaciones(mapa, id, nuevo)); //Me imprime si se actualizó o no
 
         sc.close();
     }
