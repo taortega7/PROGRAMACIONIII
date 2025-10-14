@@ -91,7 +91,7 @@ public class ExamenPilasMap {
 
         System.out.print("Ingresa el id a actualizar: "); //Lo agregue para que el usuario pueda ingresar el id
         int id = sc.nextInt();
-        System.out.print("Ingresa la nueva calificación: "); //Agregado para que el usuario pueda ingresar la nueva calificación
+        System.out.print("Ingresa la nueva calificación: "); //El usuario puede ingresar la nueva calificación
         int nuevo = sc.nextInt();
 
         System.out.println("Actualizado: " + actualizarCalificaciones(mapa, id, nuevo)); //Me imprime si se actualizó o no
