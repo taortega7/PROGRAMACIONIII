@@ -64,11 +64,8 @@ public class ExamenPilasMap {
         return pila.estaVacia();
     }
 
-    // (50 pt) Actualiza la calificación si x existe el id y está en el rango
-    // 0..100.
-    public static String actualizarCalificaciones(Map<Integer, Integer> califPorId, int id, int nuevo) { // Reviso si el
-                                                                                                         // id existe en
-                                                                                                         // el mapa
+    // (50 pt) Actualiza la calificación si x existe el id y está en el rango 0..100.
+    public static String actualizarCalificaciones(Map<Integer, Integer> califPorId, int id, int nuevo) { // Reviso si el id existe en el mapa
 
         if (califPorId.containsKey(id)) { // Uso containsKey para ver si existe el id
 
