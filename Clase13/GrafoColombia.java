@@ -248,51 +248,67 @@ public class GrafoColombia {
         List<String> todasCiudades = new ArrayList<>(listaAdyacencia.keySet());
         
         for (String ciudadIntermedia : todasCiudades) {
-            // Saltar si es origen o destino
+            // Saltar si es origen o destino o si ya está en la ruta óptima
             if (ciudadIntermedia.equals(origen) || ciudadIntermedia.equals(destino)) {
                 continue;
             }
+            
+            // Verificar que la ciudad intermedia NO esté en el camino óptimo
+            if (caminoOptimo.contains(ciudadIntermedia)) {
+                continue; // Ya está en la ruta óptima, no crear duplicado
+            }
 
-            // Calcular distancias desde la ciudad intermedia
+            // Calcular: origen → ciudadIntermedia → destino
+            // Guardamos el predecesor original
+            Map<String, String> predecesorOriginal = new HashMap<>(predecesor);
+            
+            // Ejecutar Dijkstra desde la ciudad intermedia
             Map<String, Integer> distanciasDesdeIntermedia = dijkstra(ciudadIntermedia, false);
             
-            // Verificar que exista camino válido
+            // Verificar que existan ambos caminos
             if (distancias.get(ciudadIntermedia) != Integer.MAX_VALUE && 
                 distanciasDesdeIntermedia.get(destino) != Integer.MAX_VALUE) {
                 
-                // Calcular distancia total: origen → intermedia → destino
+                // Calcular distancia total
                 int distanciaTotal = distancias.get(ciudadIntermedia) + 
                                    distanciasDesdeIntermedia.get(destino);
                 
-                // Reconstruir ruta completa
+                // Reconstruir primera parte: origen → intermedia
+                predecesor = predecesorOriginal;
                 List<String> parte1 = reconstruirCamino(origen, ciudadIntermedia);
                 
-                // Guardar predecesor actual y calcular segunda parte
-                Map<String, String> predecesorBackup = new HashMap<>(predecesor);
+                // Reconstruir segunda parte: intermedia → destino
                 dijkstra(ciudadIntermedia, false);
                 List<String> parte2 = reconstruirCamino(ciudadIntermedia, destino);
-                predecesor = predecesorBackup; // Restaurar
                 
-                // Combinar ambas partes (sin duplicar ciudad intermedia)
-                List<String> rutaCompleta = new ArrayList<>(parte1);
-                for (int i = 1; i < parte2.size(); i++) {
-                    rutaCompleta.add(parte2.get(i));
-                }
+                // Restaurar predecesor original para el siguiente ciclo
+                predecesor = predecesorOriginal;
                 
-                // Verificar que no sea duplicado
-                boolean esDuplicado = false;
-                for (Recorrido r : todosLosRecorridos) {
-                    if (r.ruta.equals(rutaCompleta)) {
-                        esDuplicado = true;
-                        break;
+                // Validar que ambas partes sean válidas y partan del origen
+                if (!parte1.isEmpty() && !parte2.isEmpty() && 
+                    parte1.get(0).equals(origen) && parte2.get(parte2.size() - 1).equals(destino)) {
+                    
+                    // Combinar ambas partes (sin duplicar ciudad intermedia)
+                    List<String> rutaCompleta = new ArrayList<>(parte1);
+                    for (int i = 1; i < parte2.size(); i++) {
+                        rutaCompleta.add(parte2.get(i));
                     }
-                }
-                
-                if (!esDuplicado) {
-                    todosLosRecorridos.add(new Recorrido(rutaCompleta, distanciaTotal));
-                    System.out.println("✅ Ruta vía " + ciudadIntermedia + ": " + 
-                                     String.join(" → ", rutaCompleta) + 
-                                     " (" + distanciaTotal + " km)");
+                    
+                    // Verificar que no sea duplicado
+                    boolean esDuplicado = false;
+                    for (Recorrido r : todosLosRecorridos) {
+                        if (r.ruta.equals(rutaCompleta)) {
+                            esDuplicado = true;
+                            break;
+                        }
+                    }
+                    
+                    if (!esDuplicado && rutaCompleta.size() >= 3) {
+                        todosLosRecorridos.add(new Recorrido(rutaCompleta, distanciaTotal));
+                        System.out.println("✅ Ruta vía " + ciudadIntermedia + ": " + 
+                                         String.join(" → ", rutaCompleta) + 
+                                         " (" + distanciaTotal + " km)");
+                    }
                 }
             }
         }
