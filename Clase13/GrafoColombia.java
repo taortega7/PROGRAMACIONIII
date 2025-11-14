@@ -7,6 +7,7 @@ import java.util.*;
  * Grafo: Mapa de Colombia (Cali → Cartagena)
  * Método de ordenamiento: Burbuja (Bubble Sort)
  */
+
 public class GrafoColombia {
 
     // ==================== CLASES INTERNAS ====================
