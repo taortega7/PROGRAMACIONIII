@@ -117,9 +117,9 @@ public class GrafoColombia {
         Set<String> visitados = new HashSet<>();
 
         if (mostrarPasos) {
-            System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
-            System.out.println("║         🚀 ALGORITMO DE DIJKSTRA - PASO A PASO           ║");
-            System.out.println("╚═══════════════════════════════════════════════════════════╝");
+            System.out.println("\n************************************************************");
+            System.out.println("*         🚀 ALGORITMO DE DIJKSTRA - PASO A PASO           *");
+            System.out.println("\n************************************************************");
             System.out.println("\n🎯 Nodo inicial: " + inicio);
         }
 
@@ -149,10 +149,10 @@ public class GrafoColombia {
             visitados.add(actual.nombre);
 
             if (mostrarPasos) {
-                System.out.println("\n═══════════════════════════════════════════════════════════");
+                System.out.println("\n************************************************************");
                 System.out.println("📍 PASO " + paso++ + " - Visitando: " + actual.nombre);
                 System.out.println("📏 Distancia acumulada: " + actual.distancia + " km");
-                System.out.println("───────────────────────────────────────────────────────────");
+                System.out.println("************************************************************");
             }
 
             // Explorar todos los vecinos (usando LinkedList de adyacencia)
@@ -232,9 +232,9 @@ public class GrafoColombia {
     public void generarRecorridos(String origen, String destino, Map<String, Integer> distancias) {
         todosLosRecorridos.clear();
 
-        System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
-        System.out.println("║         🛣️  GENERANDO RECORRIDOS ALTERNATIVOS            ║");
-        System.out.println("╚═══════════════════════════════════════════════════════════╝\n");
+        System.out.println("\n************************************************************");
+        System.out.println("*         🛣️  GENERANDO RECORRIDOS ALTERNATIVOS            *");
+        System.out.println("************************************************************\n");
 
         // 1. RECORRIDO ÓPTIMO (resultado directo de Dijkstra)
         List<String> caminoOptimo = reconstruirCamino(origen, destino);
@@ -326,9 +326,9 @@ public class GrafoColombia {
     public void ordenarRecorridosBurbuja() {
         int n = todosLosRecorridos.size();
         
-        System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
-        System.out.println("║      🔄 MÉTODO DE ORDENAMIENTO: BURBUJA (BUBBLE SORT)    ║");
-        System.out.println("╚═══════════════════════════════════════════════════════════╝\n");
+        System.out.println("\n************************************************************");
+        System.out.println("*      🔄 MÉTODO DE ORDENAMIENTO: BURBUJA (BUBBLE SORT)    *");
+        System.out.println("************************************************************\n");
         
         System.out.println("📋 Ordenando " + n + " recorridos por distancia (menor a mayor)...\n");
 
@@ -365,9 +365,9 @@ public class GrafoColombia {
      * Muestra la estructura del grafo (lista de adyacencia)
      */
     public void mostrarGrafo() {
-        System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
-        System.out.println("║           📊 GRAFO DE COLOMBIA (5 CIUDADES)              ║");
-        System.out.println("╚═══════════════════════════════════════════════════════════╝\n");
+        System.out.println("\n************************************************************");
+        System.out.println("*           📊 GRAFO DE COLOMBIA (5 CIUDADES)              *");
+        System.out.println("************************************************************\n");
         System.out.println("🗺️  Lista de Adyacencia (usando LinkedList):\n");
 
         for (Map.Entry<String, LinkedList<Arista>> entry : listaAdyacencia.entrySet()) {
@@ -386,9 +386,9 @@ public class GrafoColombia {
      * Muestra la tabla de distancias mínimas desde el origen
      */
     public void mostrarTablaDistancias(String origen, Map<String, Integer> distancias) {
-        System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
-        System.out.println("║           📏 TABLA DE DISTANCIAS MÍNIMAS                 ║");
-        System.out.println("╚═══════════════════════════════════════════════════════════╝\n");
+        System.out.println("\n************************************************************");
+        System.out.println("*           📏 TABLA DE DISTANCIAS MÍNIMAS                 *");
+        System.out.println("************************************************************\n");
 
         // Ordenar por distancia
         List<Map.Entry<String, Integer>> listaOrdenada = new ArrayList<>(distancias.entrySet());
@@ -414,9 +414,9 @@ public class GrafoColombia {
      * Muestra todos los recorridos ordenados
      */
     public void mostrarRecorridos() {
-        System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
-        System.out.println("║        🏆 RECORRIDOS ORDENADOS (MENOR A MAYOR)           ║");
-        System.out.println("╚═══════════════════════════════════════════════════════════╝\n");
+        System.out.println("\n************************************************************");
+        System.out.println("*        🏆 RECORRIDOS ORDENADOS (MENOR A MAYOR)           *");
+        System.out.println("************************************************************\n");
 
         for (int i = 0; i < todosLosRecorridos.size(); i++) {
             Recorrido r = todosLosRecorridos.get(i);
@@ -443,15 +443,15 @@ public class GrafoColombia {
     // ==================== PROGRAMA PRINCIPAL ====================
     
     public static void main(String[] args) {
-        System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
-        System.out.println("║                                                           ║");
-        System.out.println("║    ALGORITMO DE DIJKSTRA - MAPA DE COLOMBIA              ║");
-        System.out.println("║    Origen: Cali  →  Destino: Cartagena                   ║");
-        System.out.println("║                                                           ║");
-        System.out.println("║    Estructuras: ArrayList, LinkedList, List               ║");
-        System.out.println("║    Ordenamiento: Burbuja (Bubble Sort)                    ║");
-        System.out.println("║                                                           ║");
-        System.out.println("╚═══════════════════════════════════════════════════════════╝");
+        System.out.println("\n************************************************************");
+        System.out.println("*                                                           *");
+        System.out.println("*    ALGORITMO DE DIJKSTRA - MAPA DE COLOMBIA               *");
+        System.out.println("*    Origen: Cali  →  Destino: Cartagena                    *");
+        System.out.println("*                                                           *");
+        System.out.println("*    Estructuras: ArrayList, LinkedList, List               *");
+        System.out.println("*    Ordenamiento: Burbuja (Bubble Sort)                    *");
+        System.out.println("*                                                           *");
+        System.out.println("************************************************************");
 
         // Crear instancia del grafo
         GrafoColombia grafo = new GrafoColombia();
